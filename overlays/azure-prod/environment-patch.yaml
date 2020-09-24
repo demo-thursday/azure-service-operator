@@ -1,0 +1,20 @@
+- op: add
+  path: /spec/template/spec/containers/0/env
+  value:
+    - name: spring_profiles_active
+      value: azure
+    - name: MYSQL_SERVER
+      valueFrom:
+        secretKeyRef:
+          key: fullyQualifiedServerName
+          name: pitt-mysql-aro
+    - name: MYSQL_USER
+      valueFrom:
+        secretKeyRef:
+          key: fullyQualifiedUsername
+          name: pitt-mysql-aro
+    - name: MYSQL_PASS
+      valueFrom:
+        secretKeyRef:
+          key: password
+          name: pitt-mysql-aro

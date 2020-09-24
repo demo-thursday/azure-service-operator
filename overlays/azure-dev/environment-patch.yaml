@@ -1,0 +1,17 @@
+- op: add
+  path: /spec/template/spec/containers/0/env
+  value:
+    - name: spring_profiles_active
+      value: azure
+    - name: MYSQL_SERVER
+      value: petclinicdb
+    - name: MYSQL_USER
+      valueFrom:
+        secretKeyRef:
+          key: database-user
+          name: petclinicdb
+    - name: MYSQL_PASS
+      valueFrom:
+        secretKeyRef:
+          key: database-password
+          name: petclinicdb
