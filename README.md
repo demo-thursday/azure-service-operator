@@ -8,11 +8,7 @@ When installed in an OpenShift Container Platform cluster that is running on Mic
 
 ## Installing the Operator
 
-The instructions for installing this operator are detailed in the description found in the OpenShift embedded OperatorHub.  However, there are currently a few 
-
-Installation instructions for this operator can be found on [OperatorHub](https://operatorhub.io/operator/azure-service-operator), or in the official [GitHub repo]() for the operator.  For this demo, we will simply follow the instructions from the Operator Hub documentation.
-
-**Note:** If you are doing this on your own cluster, please follow the instrucitons from OperatorHub, as they will always be the most up to date.
+The instructions for installing this operator are detailed in the description found in the OpenShift embedded OperatorHub.  However, there are currently a few issues that need fixing with the docs.  As of verion `0.37.0`, there was a formatting issue with the `Secret` you are asked to create, and an RBAC issue that has already been reported (and has an easy work around).  For now, please follow these instructions
 
 ### Step 1: Create a Service Principal
 
