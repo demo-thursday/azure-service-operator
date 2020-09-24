@@ -8,13 +8,13 @@ When installed in an OpenShift Container Platform cluster that is running on Mic
 
 ## Installing the Operator
 
+The instructions for installing this operator are detailed in the description found in the OpenShift embedded OperatorHub.  However, there are currently a few 
+
 Installation instructions for this operator can be found on [OperatorHub](https://operatorhub.io/operator/azure-service-operator), or in the official [GitHub repo]() for the operator.  For this demo, we will simply follow the instructions from the Operator Hub documentation.
 
 **Note:** If you are doing this on your own cluster, please follow the instrucitons from OperatorHub, as they will always be the most up to date.
 
 ### Step 1: Create a Service Principal
-
-```
 
 For convenience, set your `tenant_id` and `subscription_id` as env vars.  You can find this info with `az account show`:
 
