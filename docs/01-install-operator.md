@@ -82,6 +82,9 @@ Once back in the OpenShift Admin web console, if you have navigated away from th
 
 * Make sure you are in the **Administration** console (loggle between Administration and Developer is at the top-left of the screen).
 * Next, from the left menu click `Operators -> OperatorHub`, then type `azure` into the filter.
+
+![OpenShift OperatorHub](images/operator-hub.png "OpenShift OperatorHub")
+
 * Click on the *Azure Service Operator* tile, then click the *Continue* button when the Community modal appears.
 * Check the version of the operator.  If it is `0.37.0`, there is a small work around required, described later.
 * Click `Install`

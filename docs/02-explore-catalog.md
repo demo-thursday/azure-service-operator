@@ -13,7 +13,7 @@ So that we don't accidentally create resources in a project that we care about, 
 
 In the middle of the screen you will see a number of ways to **Add** workloads to your Project.  Click on **From Catalog** to view the developer catalog.  Right away you should notice a number of `Operator Backed` Azure catalog itmes.  Take a moment to browse throug the list to see what is available!
 
-![Azure Services in the OpenShift Developer Catalog](images/azure-catalog.png "Azure Services in the OpenShift Developer Catalo")
+![Azure Services in the OpenShift Developer Catalog](images/azure-catalog.png "Azure Services in the OpenShift Developer Catalog")
 
 Once you have taken a look around at what is available, we'll move on to the next step and create a container image for a Spring Boot application directly from a GitHub repo!
 
