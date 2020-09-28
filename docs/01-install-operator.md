@@ -8,6 +8,8 @@ First, log into your OpenShift cluster as a user with `cluster-admin` rights.  Y
 
 If you are logged into the OpenShift web console, you can copy/paste the login command by clicking on your user name in the top-right of the screen then selecting **Copy Login Command**.  Unless you are logged in as `kubeadmin`, you should be asked for your username and password.
 
+![Copy login command](images/copy-login-command.png "Copy login command")
+
 Once this is done, copy the login command and paste it into a terminal window.  You should now be logged in with the OpenShift cli.  From here on out, you can either use the `oc` command line, or `kubectl`.  They are interchangeable for the rest of the demo.
 
 ## 2. Create an Azure Service Principal and a Kubernetes Secret
@@ -87,8 +89,13 @@ Once back in the OpenShift Admin web console, if you have navigated away from th
 
 * Click on the *Azure Service Operator* tile, then click the *Continue* button when the Community modal appears.
 * Check the version of the operator.  If it is `0.37.0`, there is a small work around required, described later.
-* Click `Install`
+
+![Operator version](images/operator-version.png "Operator version")
+
+* Click the **Install** button.
 * Accept the default settings for this operator by clicking **Subscribe**.
+
+![Subscribe](images/subscribe.png "Subscribe")
 
 Done!  You will be taken to an *Installed Operators* view.  Depending on the Project you are currently in, it may take a moment or two for the opeartor to appear in the list.  This is normal.
 

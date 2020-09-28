@@ -11,6 +11,8 @@ So that we don't accidentally create resources in a project that we care about, 
 * Give your new project a name (e.g. `test`) and click **Create**.
 * You will now be in your new project/namespace.
 
+![New Project](images/new-project.png "New Project")
+
 In the middle of the screen you will see a number of ways to **Add** workloads to your Project.  Click on **From Catalog** to view the developer catalog.  Right away you should notice a number of `Operator Backed` Azure catalog itmes.  Take a moment to browse throug the list to see what is available!
 
 ![Azure Services in the OpenShift Developer Catalog](images/azure-catalog.png "Azure Services in the OpenShift Developer Catalog")
