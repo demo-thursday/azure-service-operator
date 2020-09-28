@@ -47,7 +47,7 @@ stringData:
 This secret should be created in the `openshift-operators` namespace:
 
 ```
-$ oc apply -f azure-operator-settings-secret.yaml -n openshift-operators
+oc apply -f azure-operator-settings-secret.yaml -n openshift-operators
 ```
 
 Once this is applied, you should be able to login to your OpenShift cluster as an Admin to finish the install.
@@ -60,7 +60,7 @@ Once this is applied, you should be able to login to your OpenShift cluster as a
 The current version of the Azure Service Operator (0.37) has a Role Based Access Control bug.  You can [track the issue on GitHub](https://github.com/Azure/azure-service-operator/issues/1269).  Until this issue is resolved, the easiest fix is to grant the `azure-service-operator` service account that is in the `openshift-operators` namespace `cluster-admin` rights.
 
 ```
-$ oc adm policy add-cluster-role-to-user cluster-admin -z azure-service-operator -n openshift-operators
+oc adm policy add-cluster-role-to-user cluster-admin -z azure-service-operator -n openshift-operators
 ```
 
 Once the operator completes the install, you will now have a number of Azure services available to be deployed in projects.  They will appear as "Catalog" items that are "Operator Backed".
@@ -108,9 +108,15 @@ spec:
 ```
 
 ```
-$ oc apply -f mysql-azure.yaml -n <my project>
+oc apply -f mysql-azure.yaml -n <my project>
 ```
 
 You can check the status of this request by listing the `mysqls` resources.  If everything is good, your `MySQLServer` instance should have a status of "Request sent to Azure".
 
 It seems to take 2-3 minutes before you will notice the new database instance show up in the Activity Log in your Azure portal, and about 5min total before it  will be active and ready to accept connections.
+
+## Guided Demo
+
+If you would like to try a more in-depth demo that includes building an application conatitner and hypothetical "DEV" and "PROD" environments that use both MySQL container images and native Azure MySQL services, take a look at the [demo](demo.md) in this repository!
+
+[DEMO: Mixing containers and native services in a an application enviornment](demo.md)
