@@ -2,9 +2,14 @@
 
 The [Azure Service Operator](https://github.com/Azure/azure-service-operator) is an open source [Kubernetes Operator](https://operatorhub.io/operator/azure-service-operator) that can be installed and run on most current Kubernetes distributions, including [OpenShift Container Platform](https://www.openshift.com), and the fully managed [Azure Red Hat OpenShift](https://azure.microsoft.com/en-us/services/openshift/) service.
 
+![Azure Services in the OpenShift Developer Catalog](docs/images/azure-catalog.png "Azure Services in the OpenShift Developer Catalo")
+
 For this demo, it doesn't matter if you use an instance of *Azure Red Hat OpenShift*, or if you install your own self-managed [OpenShift](https://www.openshift.com/try) cluster on Azure, the instructions and results are the same.  After all, Azure Red Hat OpenShift is simply a fully managed instance of OpenShift that comes with a [99.9% financially-backed SLA](https://azure.microsoft.com/en-au/support/legal/sla/openshift/v1_0/).
 
+## Demo Agenda
+
 In this demo we will:
+
 * Install the Azure Service Operator in our OpenShift cluster.
 * Build a container image containing a Spring Boot app that connects to a MySQL database.
     * Demonstrate a simple "source-to-image" build process to build a container image simply by referencing a git repository with the application source code.
