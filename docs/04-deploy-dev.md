@@ -1,42 +1,50 @@
-# Step 3: Build the Pet Clinic Demo App
+# Step 4: Deploy to DEV with a MySQL Container
 
-Although it is still pretty cool, simply creating a native Azure service from OpenShift does not make for a great demo.  We need an application to consumer this Azrue service to really show the value of this integration!
+The Pet Clinic application container that we built in the last step needs to connect to MySQL to store data.
 
-Even better, how about showing how you can use both a *"containerized"* service as well as the *"native/managed"* equivalent!
+Now that we have the **Azure Service Operator** installed in our cluster, we have some options for MySQL!  The obvious options are:
+* Create a native Azure managed MySQL service, or
+* Use a MySQL container from the OpenShift container catalog
 
-The application were are going to build can connect to a MySQL database to save data.  In our **DEV** environment we will use a MySQL container.  In our **PROD** environment we will use an Azure native managed MySQL service.
+From an application perspective, do we need to change anything in order to use a MySQL container vs an Azure MySQL instance? So... what should we use for our DEV environment?
 
-Why both?  See if you can think of why using a MySQL container in *non-prod* environments might have interesting advantages, and why a managed service in *prod* is probably the way to go.  We'll discuss the reasoning a bit later, but for now let's build this app!
+Most applications (especially [Quarkus](https://quarkus.io/) or Spring Boot) have connection information configured as properties that can be overridden at run time with environment variables.  This is also how our Pet Clinic application work!  You can see the [Azure configuration properties here](https://github.com/pittar/spring-petclinic/blob/master/src/main/resources/application-azure.properties).
 
-## Create the "CI/CD" Project and the Build
+This means as long as we use a MySQL 8 server with at `petclinic` database, we should be good to go.
+
+So, what option should we use in our DEV environment?
+
+##  DEV: MySQL container or service?
+
+Although there is really no "wrong" answer here, in DEV **using a container** for our MySQL server has a number of advantages:
+
+1. **It's fast.**  A new MySQL container can be up and running in seconds.  This can be important in CI/CD pipelines, or for running end-to-end test suites.
+2. **There's no added cost.** A MySQL container runs in the OpenShift cluster you have already provisioned.  It doesn't require a new VM.  This can help save cost, especially in dev/test environments.
+3. **It can be ephemeral.** You decide if the database needs persistence or not.  A database that might only exist for as long as it takes for a test suite to run may not require persistence at all, again, saving a little more money in a dev/test environment.
+4. **It can be persistent.** This might seem obvious, but it's worth noting that you can use a "persistent volume claim" so that your data will survive rerstarts of the MySQL container/pod.
+
+With this in mind, we will use a MySQL container in our DEV environment.
+
+## Create the DEV Environment and Deploy Pet Clinic and MySQL
+
+Once more we have [Kustomize](https://github.com/kubernetes-sigs/kustomize) come to the rescue to make it super easy to consistently deploy our environment in a GitOps way.
+
+The following command will:
+* Create a new *namespace* called `petclinic-dev`
+* Create a *DeploymentConfig*, *Service*, and *Route* for the Pet Clinic app.
+* Create a *DeploymentConfig*, *Service*, *Secret*, and *PersistentVolumeClaim* for MySQL
 
 ```
-oc apply -k overlays/cicd
+oc apply -k overlays/azure-dev
 
-namespace/cicd created
-rolebinding.rbac.authorization.k8s.io/cicd-image-puller created
-buildconfig.build.openshift.io/petclinic created
+namespace/petclinic-dev created
+secret/petclinicdb created
+service/petclinicdb created
+service/petclinic created
+deploymentconfig.apps.openshift.io/petclinicdb created
+deploymentconfig.apps.openshift.io/petclinic created
+route.route.openshift.io/petclinic created
+persistentvolumeclaim/petclinicdb created
 ```
 
-This created a new Project/namespace called `cicd`.  We can switch into it:
-```
-oc project cicd
-```
-
-```
-oc status -n cicd
-
-In project cicd on server https://api.rn9nygs6.canadacentral.aroapp.io:6443
-
-bc/petclinic source builds https://github.com/pittar/spring-petclinic on openshift/java:8
-  -> istag/petclinic:latest
-  build #1 running for 37 seconds - 88d2c83: Update application-azure.properties (Andrew Pitt <apitt@redhat.com>)
-```
-
-In the OpenShift web console (Developr View), you can use the **Project** drop-down to select the new `cicd` project.
-
-Not much to see here once the build is complete.  A new image is now available in the "CI/CD" project named `petclinic:latest`.  We will refer to this in the next two steps.
-
-Time to deploy to *DEV*!
-
-[Step 4: Deploy Pet Clinic connected to a MySQL Container]
+In OpenShift developer web console, switch to the new `petclinic-dev` project (it probably be near the bottom of the project list)

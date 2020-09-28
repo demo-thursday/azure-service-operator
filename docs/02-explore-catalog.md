@@ -1,4 +1,4 @@
-# Explore the Azure Service Catalog
+# Step 2: Explore the Azure Service Catalog
 
 Now that Azure Service Operator has been installed and configured, let's take a look at what is available from the catalog.
 

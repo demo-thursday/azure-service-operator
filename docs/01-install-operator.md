@@ -1,4 +1,4 @@
-# Installing the Azure Service Operator
+# Step 1: Installing the Azure Service Operator
 
 Installing the Azure Service Operator in an OpenShift cluster is quite easy, since Openshift 4 has an embedded version of [OperatorHub](https://operatorhub.io) that contains Red Hat operators, Certified 3rd Party operators, and Community operators.  These operators can be installed by OpenShift *Cluster Admins* with a few clicks, or in a declarative way with Kubernetes Custom Resources (not covered in this demo).
 

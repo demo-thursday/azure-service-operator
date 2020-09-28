@@ -1,10 +1,17 @@
+apiVersion: azure.microsoft.com/v1alpha1
+kind: ResourceGroup
+metadata:
+  name: openshift-databases
+spec:
+  location: "canadacentral"
+---
 apiVersion: azure.microsoft.com/v1alpha2
 kind: MySQLServer
 metadata:
   name: pitt-mysql-aro
 spec:  
   location: canadacentral
-  resourceGroup: databases
+  resourceGroup: openshift-databases
   serverVersion: "8.0"
   sslEnforcement: Disabled
   createMode: Default # Possible values include: Default, Replica, PointInTimeRestore (not implemented), GeoRestore (not implemented)
@@ -20,7 +27,7 @@ kind: MySQLDatabase
 metadata:
   name: petclinic
 spec:
-  resourceGroup: databases
+  resourceGroup: openshift-databases
   server: pitt-mysql-aro
 ---
 apiVersion: azure.microsoft.com/v1alpha1
@@ -28,7 +35,7 @@ kind: MySQLFirewallRule
 metadata:
   name: pitt-mysql-aro-fw
 spec:
-  resourceGroup: databases
+  resourceGroup: openshift-databases
   server: pitt-mysql-aro
   startIpAddress: 0.0.0.0
   endIpAddress: 0.0.0.0
