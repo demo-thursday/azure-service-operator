@@ -39,4 +39,4 @@ Not much to see here once the build is complete.  A new image is now available i
 
 Time to deploy to *DEV*!
 
-[Step 4: Deploy Pet Clinic connected to a MySQL Container](04-deploy-dev.md)
+[Step 4: Deploy Pet Clinic connected to a MySQL Container]
