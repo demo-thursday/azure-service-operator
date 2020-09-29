@@ -1,5 +1,7 @@
 # Step 2: Explore the Azure Service Catalog
 
+[Back to Step 1: Installing the Operator](01-install-operator.md)
+
 Now that Azure Service Operator has been installed and configured, let's take a look at what is available from the catalog.
 
 ## Create a Test Project

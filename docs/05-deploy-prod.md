@@ -1,5 +1,7 @@
 # Step 5: Deploy to PROD with a Managed Azure MySQL Service
 
+[Back to Step 4: Deploy Pet Clinic connected to a MySQL Container](04-deploy-dev.md)
+
 Our Pet Clinic app has been tested in DEV and passed with flying colours.  Now it's time to deploy it to PROD!
 
 In our dev/test environments, we decided to use MySQL container images instead of a managed service because:
