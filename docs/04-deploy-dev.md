@@ -101,9 +101,9 @@ To test out the database connectivity:
 * Click the *Add Owner* button.
 * Fill in the new pet owner form, then submit.
 
-![Dev app find owner](images/dev-app-find-owner.png "Dev app find owner")
+![Dev app find owner](images/dev-app-find-owners.png "Dev app find owner")
 
-![Dev app add owner](images/dev-app-find-add.png "Dev app add owner")
+![Dev app add owner](images/dev-app-add-owner.png "Dev app add owner")
 
 To find your new owner:
 * Click on *Find Owners* from the top navigation.

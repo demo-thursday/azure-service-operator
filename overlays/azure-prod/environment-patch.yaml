@@ -7,14 +7,14 @@
       valueFrom:
         secretKeyRef:
           key: fullyQualifiedServerName
-          name: pitt-mysql-aro
+          name: prod-mysql-aro
     - name: MYSQL_USER
       valueFrom:
         secretKeyRef:
           key: fullyQualifiedUsername
-          name: pitt-mysql-aro
+          name: prod-mysql-aro
     - name: MYSQL_PASS
       valueFrom:
         secretKeyRef:
           key: password
-          name: pitt-mysql-aro
+          name: prod-mysql-aro
