@@ -25,4 +25,4 @@ Right away you should notice a number of `Operator Backed` Azure catalog itmes. 
 
 Once you have taken a look around at what is available, we'll move on to the next step and create a container image for a Spring Boot application directly from a GitHub repo!
 
-[Step 3: Build the Pet CLinic Application](03-build-app.md)
+[Step 3: Build the Pet Clinic Application](03-build-app.md)

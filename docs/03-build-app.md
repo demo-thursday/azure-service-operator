@@ -2,7 +2,7 @@
 
 [Back to Step 2: Explore the Azure Service Catalog](02-explore-catalog.md)
 
-Although it is still pretty cool, simply creating a native Azure service from OpenShift does not make for a great demo.  We need an application to consume this Azrue service to really show the value of this integration!
+Although it is still pretty cool, simply creating a native Azure service from OpenShift does not make for a great demo.  We need an application to consume this Azure service to really show the value of this integration!
 
 Even better, how about showing how you can use both a *"containerized"* service as well as the *"native/managed"* equivalent!
 
@@ -12,13 +12,13 @@ Why both?  See if you can think of why using a MySQL container in *dev/test* env
 
 ## A Quick Note on Kustomize
 
-One thing that I love about the Azure Service Operator is that you treat these services just like any other resource in a Kubernetes/OpenShift environment... as a custom resource (yaml file) that is part of your git repository.  This follows the declarative pattern that is so common in Kubernetes.  You describe what you want to happen, and Kubernetes (or in this case, the Azure Service Operator) will make it so.
+One thing that I love about the Azure Service Operator is that you treat these services just like any other resource in a Kubernetes/OpenShift environment... as a custom resource (yaml file) that is part of your git repository.  This follows the declarative pattern that is so powerful in Kubernetes.  You describe what you want to happen, and Kubernetes (or in this case, the Azure Service Operator) will make it so.
 
 To show how nicely this integrates with standard Kubernetes tooling and processes, we will use [Kustomize](https://github.com/kubernetes-sigs/kustomize) to define our *CI/CD*, *DEV*, and *PROD* environments.  Kustomize is a great kubernetes-native tool that allows for templating Kubernetes resources in a natural way.  When you use Kustomize, you don't need to copy/paste YAML files all over the place, you start with common "base" resources and add to them (or patch them) in "overlay" directories.  
 
-Although this demo won't go deep into Kustomize, the examples in this repo an serve as a simple introduction if you want to take a look.  Otherwise, the main point of useing Kustomize is to show how easy it is to create Azure services in a Kuubernetes-native way.
+Although this demo won't go deep into Kustomize, the examples in this repo can serve as a simple introduction if you want to take a look.  Otherwise, the main point of using Kustomize for this demo is to show how easy it is to create Azure services in a Kuubernetes-native way.
 
-Oh, and one of the best features of Kustomize is that it is baked right into recent versions of both the `kubectl` and `oc` command line tools!  Anywhere that you see a `-k` flag in a command, you'll know that is Kustomize in action!
+Oh! As an aside, one of the best features of Kustomize is that it is baked right into recent versions of both the `kubectl` and `oc` command line tools!  Anywhere that you see a `-k` flag in a command, you'll know that is Kustomize in action!
 
 ## Create the "CI/CD" Project and the Build
 
@@ -50,20 +50,24 @@ We can then check the status:
 
 ```
 oc status
+```
 
+Which should return information similar to the following:
+
+```
 In project cicd on server <your openshift server>
 
 bc/petclinic source builds https://github.com/pittar/spring-petclinic on openshift/java:8
   -> istag/petclinic:latest
-  build #1 running for 37 seconds - 88d2c83: Update application-azure.properties (Andrew Pitt <apitt@redhat.com>)
+  build #1 running for 37 seconds - 88d2c83: Update application-azure.properties
 ```
 
 Based on this, you can see that the build was created and is already running.
 
 In the OpenShift web console:
-* Make sure you are in "Developer" view (top of left navigation).
+* Make sure you are in *Developer* view (top of left navigation).
 * Use the **Project** drop-down in the main window to select the new `cicd` project.
-* From the left navigation, select "Builds"
+* From the left navigation, select *Builds*
 * Click on the `petclinic` build.
 
 You should end up at a screen that looks like this.  Click "Builds" from the main window.
