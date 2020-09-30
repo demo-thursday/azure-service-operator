@@ -1,5 +1,7 @@
 # Step 6: Cleanup and Conclusion
 
+[Back to step 5: Deploy Pet Clinic connected to a Managed Azure MySQL Instance](05-deploy-prod.md)
+
 That was pretty easy, right?
 
 Now all that's left to do is clean up our resources!
