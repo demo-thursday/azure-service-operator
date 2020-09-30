@@ -25,6 +25,3 @@ In this demo we will:
 Let's get started!
 
 [Step 1: Install the Azure Service Operator](docs/01-install-operator.md)
-
-
-
