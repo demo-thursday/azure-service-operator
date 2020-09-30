@@ -122,9 +122,10 @@ You should then get output similar to:
 namespace/petclinic-prod created
 service/petclinic created
 deploymentconfig.apps.openshift.io/petclinic created
+resourcegroup.azure.microsoft.com/openshift-databases created
 mysqldatabase.azure.microsoft.com/petclinic created
-mysqlfirewallrule.azure.microsoft.com/pitt-mysql-aro-fw created
-mysqlserver.azure.microsoft.com/pitt-mysql-aro created
+mysqlfirewallrule.azure.microsoft.com/prod-mysql-aro-fw created
+mysqlserver.azure.microsoft.com/prod-mysql-aro created
 route.route.openshift.io/petclinic created
 ```
 
@@ -157,7 +158,7 @@ For this next part, we will track the progress of the database creation from the
 
 Login to the Microsoft Azure Portal.  You should see the new Resource Group named `openshift-databases`.  If you don't see it yet, wait a moment then refresh your screen.  It can sometimes take a minute or two for the Azure Portal to show new resources.
 
-Take a moment to reflect on the fact that the operator running in OpenShift just created that resource group...
+Take a moment to reflect on the fact that *the operator running in OpenShift just created that resource group...*
 
 Next, click on the `openshift-databases` Resource Group, then the *Activity Log*.  Eventually, you will end up with an activity log that looks something like this:
 
@@ -165,20 +166,23 @@ Next, click on the `openshift-databases` Resource Group, then the *Activity Log*
 
 You will notice a few things:
 1. It will probably take somewhere from 5-7 minutes for your new Azure MySQL database to fully provision.
-2. You will see a number of errors in the Activity Log.  This is normal.
+2. You will see a number of errors in the Activity Log.  **This is normal.**
 
 As for #1, it's really not a big deal that it takes a few minutes to provision this database.  After all, the entire reason you are using this service is because you need a database that will live a long time, have great availability, and have managed patches/upgrades.
 
 The many failures might seem concerning at first, until you realize what is happening.
 
-Essentially, the Azure Service Operator has received requeusts to create four different things:  A Resource Group, a MySQL Server, a Database on that server, and an associated Firewall Rule.  However, it seems to be trying to make them all at once.
+### Hello Operator
 
-Obviously, order of operations is important in a case like this, but the failures are simply handled by re-tried.  Once the operator creates the Resource Group, it will notice that the `MySQLServer` resource is in a bad state and attempt to fix it.  Once the MySQL Server is up, it will fix the database, and so on.  Eventually, the operator will have all of these components in a healthy state, and the database will be ready to use!
+Essentially, the Azure Service Operator has received requests to create four different things:  A Resource Group, a MySQL Server, a Database on that server, and an associated Firewall Rule.  However, it seems to be trying to make them all at once.
+
+Obviously, order of operations is important in a case like this, but the failures are simply handled by re-tries.  When the operator sees a resource is "unhealthy", it will try to fix it.  Once the "Resource Group" has been created, the next attempt by the operator to create the "MySQLServer" will succeed.  This will cascade through the list of resources until everything is "healthy".
+
+### Success!
 
 As you can see in the image above, the last three log messages state the Server, Database and Firewall Rule all succeeded.  The successful creation of the Resource Group is down near the bottom of the list.
 
-
-
+### Back to OpenShift
 
 In the OpenShift web console Developer view, when you switch to the new `petclinic-prod` project, you will see there is only one Pod - Pet Clinic.  This makes sense, since there is *no MySQL container* running in in this project.
 

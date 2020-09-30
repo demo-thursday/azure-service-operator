@@ -159,4 +159,4 @@ You should see the owner you created in this list.
 
 Next up, time to create a "Prod" environment, including a managed Azure MySQL database!
 
-[Step 5: Deploy Pet Clinic connected to a MySQL Container](05-deploy-prod.md)
+[Step 5: Deploy Pet Clinic connected to a Managed Azure MySQL Instance](05-deploy-prod.md)

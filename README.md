@@ -1,6 +1,6 @@
 # Azure Service Catalog in OpenShift Container Platform
 
-This demo is based on this [OpenShift blog post](https://www.openshift.com/blog/using-the-azure-service-operator-on-openshift).
+Inspired by this [OpenShift blog post](https://www.openshift.com/blog/using-the-azure-service-operator-on-openshift).
 
 ## Azure Service Operator
 
