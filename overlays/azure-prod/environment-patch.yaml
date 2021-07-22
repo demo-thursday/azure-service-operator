@@ -7,14 +7,14 @@
       valueFrom:
         secretKeyRef:
           key: fullyQualifiedServerName
-          name: prod-mysql-aro
+          name: mysqlserver-prod-mysql-aro
     - name: MYSQL_USER
       valueFrom:
         secretKeyRef:
           key: fullyQualifiedUsername
-          name: prod-mysql-aro
+          name: mysqlserver-prod-mysql-aro
     - name: MYSQL_PASS
       valueFrom:
         secretKeyRef:
           key: password
-          name: prod-mysql-aro
+          name: mysqlserver-prod-mysql-aro
